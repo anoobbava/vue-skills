@@ -7,3 +7,5 @@
   3. cd vue-skills
   4. type `npm run serve`
   Hooray All done
+
+  [[https://github.com/anoobbava/vue-skills/gifs/vue.gif|alt=sample-imags]]
