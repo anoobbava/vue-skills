@@ -2,6 +2,10 @@
   <div class="hello">
     <div class="holder">
      <ul>
+      <form @submit.prevent="addSkill">
+        <input type="text" placeholder="Enter the skill you have.." v-model="dataInput" v-validate="'min: 5'" name="skill">
+        <p class="alert" v-if="errors.has('skill')"> {{errors.first('skill')}}</p>
+      </form>
        <li v-for="(data, index) in skills" :key='index'>{{data.skill}}</li>
        <p>These are the Skills you posses</p>
      </ul>
@@ -16,19 +20,41 @@ export default {
   name: 'Skills',
   data() {
     return {
+      dataInput: '',
       skills: [
                 {'skill': 'Ruby'},
-                { 'skill': 'Rails'},
-                { 'skill': 'vue'},
-                {'skill': 'html'},
-                {'skill': 'CSS'}
+                { 'skill': 'Rails'}
               ]
-  } }
-}
+    }
+  },
+  methods: {
+  addSkill(){
+    this.$validator.validateAll().then((result) => {
+      if(result){
+        this.skills.push({skill: this.dataInput});
+        this.dataInput = '';
+      }
+      else{
+        alert('Not authorised');
+      }
+    })
+  }
+  }
+
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+    input {
+    width: calc(100% - 40px);
+    border: 0;
+    padding: 20px;
+    font-size: 1.3em;
+    background-color: #323333;
+    color: #687F7F;
+  }
 
   .holder {
     background: #fff;
@@ -58,6 +84,14 @@ export default {
 
   .container {
     box-shadow: 0px 0px 40px lightgray;
+  }
+
+  .alert {
+    background: #fdf2ce;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px;
+    margin-top: -20px;
   }
 
 </style>
