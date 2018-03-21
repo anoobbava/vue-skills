@@ -8,4 +8,4 @@
   4. type `npm run serve`
   Hooray All done
 
-  [[https://github.com/anoobbava/vue-skills/gifs/vue.gif|alt=sample-imags]]
+![sample output](https://github.com/anoobbava/vue-skills/blob/master/gifs/vue.gif)
